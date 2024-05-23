@@ -3,9 +3,7 @@
     {
       "id": "959891565:959891565",
       "data": {
-        "__scenes": {},
-        "type": "add",
-        "inProcess": "pets"
+        "type": "add"
       }
     }
   ]

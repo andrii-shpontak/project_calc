@@ -18,3 +18,14 @@ export function projectButtons() {
     { columns: 2 },
   );
 }
+
+export function confirmButtons() {
+  return Markup.inlineKeyboard(
+    [
+      Markup.button.callback('✅ Confirm', 'cnf_confirm'),
+      Markup.button.callback('🔄 Repeat', 'cnf_repeat'),
+      Markup.button.callback('❌ Cancel', 'cnf_cancel'),
+    ],
+    { columns: 3 },
+  );
+}

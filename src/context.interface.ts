@@ -4,5 +4,7 @@ export interface Context extends ContextTelegraf {
   session: {
     type?: 'add' | 'edit' | 'remove';
     inProcess?: string;
+    hours?: number;
+    lastInteraction?: 'confirmation';
   };
 }
