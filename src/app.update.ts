@@ -1,8 +1,9 @@
-import { AppService } from './app.service';
 import { Action, Command, Hears, InjectBot, Start, Update } from 'nestjs-telegraf';
 import { Markup, Telegraf } from 'telegraf';
-import { actionButtons, projectButtons } from './app.buttons';
+
+import { AppService } from './app.service';
 import { Context } from './context.interface';
+import { projectButtons } from './app.buttons';
 
 interface Project {
   id: string;
@@ -22,12 +23,17 @@ export class AppUpdate {
   constructor(
     @InjectBot() private readonly bot: Telegraf<Context>,
     private readonly appService: AppService,
-  ) {}
+  ) {
+    this.setBotCommands();
+  }
 
-  @Start()
-  async startCommand(ctx: Context) {
-    await ctx.reply('Hi! ✋');
-    await ctx.reply('What can i help you?', actionButtons());
+  private async setBotCommands() {
+    await this.bot.telegram.setMyCommands([
+      { command: 'start', description: 'Start the bot' },
+      { command: 'add_time', description: 'Add time to a project' },
+      { command: 'get_projects', description: 'Get the list of projects' },
+      { command: 'cancel', description: 'Cancel current action' },
+    ]);
   }
 
   @Command('add_time')
